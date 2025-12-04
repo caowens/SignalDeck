@@ -1,5 +1,8 @@
 using Microsoft.EntityFrameworkCore;
+using SignalDeck.Application.Interfaces;
+using SignalDeck.Application.Services;
 using SignalDeck.Infrastructure.Data;
+using SignalDeck.Infrastructure.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +15,10 @@ builder.Services.AddDbContext<SignalDeckDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("SignalDeckDatabase"));
 });
+
+builder.Services.AddScoped<IApplicationRepository, ApplicationRepository>();
+
+builder.Services.AddScoped<ApplicationService>();
 
 var app = builder.Build();
 
