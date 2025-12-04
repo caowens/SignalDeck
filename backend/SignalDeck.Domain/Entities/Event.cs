@@ -8,7 +8,7 @@ namespace SignalDeck.Domain.Entities
 {
     public class Event : BaseEntity
     {
-        public string ApplicationId { get; set; } = string.Empty;
+        public int ApplicationId { get; set; }
         public Application Application { get; set; } = default!;
         public string Name { get; set; } = string.Empty;
         public DateTime Timestamp { get; set; }
