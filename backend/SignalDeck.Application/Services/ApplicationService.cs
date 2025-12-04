@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using SignalDeck.Application.DTOs.Application;
 using SignalDeck.Application.Interfaces;
+using SignalDeck.Application.Mapping;
 using ApplicationEntity = SignalDeck.Domain.Entities.Application;
 
 namespace SignalDeck.Application.Services
@@ -27,16 +28,11 @@ namespace SignalDeck.Application.Services
             });
         }
 
-        public async Task<ApplicationDto> CreateAsync(CreateApplicationRequest request)
+        public async Task<ApplicationEntity> CreateAsync(ApplicationEntity app)
         {
-            var app = new ApplicationEntity
-            {
-                Name = request.Name
-            };
-
             var createdApp = await _appRepo.AddAsync(app);
-            
-            return new ApplicationDto
+
+            return new ApplicationEntity
             {
                 Id = createdApp.Id,
                 Name = createdApp.Name
