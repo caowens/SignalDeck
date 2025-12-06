@@ -22,6 +22,7 @@ builder.Services.AddScoped<IErrorLogRepository, ErrorLogRepository>();
 
 builder.Services.AddScoped<ApplicationService>();
 builder.Services.AddScoped<EventService>();
+builder.Services.AddScoped<ErrorLogService>();
 
 builder.Services.AddControllers();
 
