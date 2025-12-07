@@ -11,5 +11,6 @@ namespace SignalDeck.Application.Interfaces
         Task<IEnumerable<Metric>> GetByApplicationIdAsync(int appId);
         Task<Metric> AddAsync(Metric metric);
         Task<IEnumerable<Metric>> QueryMetricsAsync(int appId, string metricName);
+        Task<bool> ExistsAsync(string metricName);
     }
 }

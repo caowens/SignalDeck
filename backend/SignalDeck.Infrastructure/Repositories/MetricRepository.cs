@@ -24,6 +24,11 @@ namespace SignalDeck.Infrastructure.Repositories
             return metric;
         }
 
+        public async Task<bool> ExistsAsync(string metricName)
+        {
+            return await _context.Metrics.AnyAsync(m => m.Name == metricName);
+        }
+
         public async Task<IEnumerable<Metric>> GetByApplicationIdAsync(int appId)
         {
             return await _context.Metrics

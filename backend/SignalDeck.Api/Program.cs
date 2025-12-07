@@ -24,6 +24,7 @@ builder.Services.AddScoped<IMetricRepository, MetricRepository>();
 builder.Services.AddScoped<ApplicationService>();
 builder.Services.AddScoped<EventService>();
 builder.Services.AddScoped<ErrorLogService>();
+builder.Services.AddScoped<MetricService>();
 
 builder.Services.AddControllers();
 
