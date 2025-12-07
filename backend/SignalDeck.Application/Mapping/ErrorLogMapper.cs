@@ -16,7 +16,7 @@ namespace SignalDeck.Application.Mapping
                 Id = errorLogModel.Id,
                 ApplicationId = errorLogModel.ApplicationId,
                 Message = errorLogModel.Message,
-                Severity = errorLogModel.Severity,
+                Severity = errorLogModel.Severity.ToString(),
                 Timestamp = errorLogModel.Timestamp
             };
         }
@@ -28,7 +28,7 @@ namespace SignalDeck.Application.Mapping
                 ApplicationId = createRequest.ApplicationId,
                 Message = createRequest.Message,
                 StackTrace = createRequest.StackTrace,
-                Severity = createRequest.Severity,
+                Severity = Enum.Parse<ErrorSeverity>(createRequest.Severity),
                 Timestamp = DateTime.UtcNow,
                 AdditionalDataAsJson = createRequest.AdditionalDataAsJson,
             };

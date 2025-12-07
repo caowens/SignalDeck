@@ -40,9 +40,19 @@ namespace SignalDeck.Application.Services
                 throw new KeyNotFoundException($"Application with ID {request.ApplicationId} does not exist.");
             }
 
+            if (!IsValidSeverity(request.Severity))
+            {
+                throw new ArgumentException($"Severity '{request.Severity}' is invalid. Valid values: {string.Join(", ", Enum.GetNames(typeof(ErrorSeverity)))}");
+            }
+
             var errorLog = request.ToErrorLogFromCreateRequest();
             await _errorLogRepo.AddAsync(errorLog);
             return errorLog;
+        }
+
+        private bool IsValidSeverity(string severity)
+        {
+            return Enum.TryParse<ErrorSeverity>(severity, true, out _);
         }
         
     }

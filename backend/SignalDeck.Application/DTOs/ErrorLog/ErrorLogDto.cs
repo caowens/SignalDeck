@@ -11,7 +11,7 @@ namespace SignalDeck.Application.DTOs.ErrorLog
         public int Id { get; set; }
         public int ApplicationId { get; set; }
         public string Message { get; set; } = string.Empty;
-        public ErrorSeverity Severity { get; set; }
+        public string Severity { get; set; } = "Low"; // Default
         public DateTime Timestamp { get; set; }
     }
 }
