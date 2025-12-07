@@ -19,6 +19,7 @@ builder.Services.AddDbContext<SignalDeckDbContext>(options =>
 builder.Services.AddScoped<IApplicationRepository, ApplicationRepository>();
 builder.Services.AddScoped<IEventRepository, EventRepository>();
 builder.Services.AddScoped<IErrorLogRepository, ErrorLogRepository>();
+builder.Services.AddScoped<IMetricRepository, MetricRepository>();
 
 builder.Services.AddScoped<ApplicationService>();
 builder.Services.AddScoped<EventService>();
