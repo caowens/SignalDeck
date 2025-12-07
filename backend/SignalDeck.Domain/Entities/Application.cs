@@ -11,5 +11,6 @@ namespace SignalDeck.Domain.Entities
         public string Name { get; set; } = string.Empty;
         public ICollection<Event> Events { get; set; } = new List<Event>();
         public ICollection<ErrorLog> ErrorLogs { get; set; } = new List<ErrorLog>();
+        public ICollection<Metric> Metrics { get; set; } = new List<Metric>();
     }
 }
