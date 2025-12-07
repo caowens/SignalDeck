@@ -32,7 +32,7 @@ namespace SignalDeck.Application.Services
             return errorLogs.Select(el => el.ToDto()).ToList();
         }
 
-        public async Task<ErrorLog> CreateAsync(CreateErrorLogRequest request)
+        public async Task<ErrorLogDto> CreateAsync(CreateErrorLogRequest request)
         {
             bool appExists = await _appRepo.ExistsAsync(request.ApplicationId);
             if (!appExists)
@@ -47,7 +47,7 @@ namespace SignalDeck.Application.Services
 
             var errorLog = request.ToErrorLogFromCreateRequest();
             await _errorLogRepo.AddAsync(errorLog);
-            return errorLog;
+            return errorLog.ToDto();
         }
 
         private bool IsValidSeverity(string severity)
