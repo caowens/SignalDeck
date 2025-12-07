@@ -29,7 +29,7 @@ namespace SignalDeck.Application.Mapping
                 ApplicationId = createRequest.ApplicationId,
                 Name = createRequest.Name,
                 Value = createRequest.Value,
-                Timestamp = createRequest.Timestamp,
+                Timestamp = DateTime.UtcNow,
                 PropertiesAsJson = createRequest.PropertiesAsJson
             };
         }
