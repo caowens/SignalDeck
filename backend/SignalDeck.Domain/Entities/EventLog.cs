@@ -11,12 +11,12 @@ namespace SignalDeck.Domain.Entities
         public int ApplicationId { get; set; }
         public Application Application { get; set; } = default!;
         public string Message { get; set; } = string.Empty;
-        public LogSeverity Severity { get; set; } = LogSeverity.Info;
+        public EventLogSeverity Severity { get; set; } = EventLogSeverity.Info;
         public DateTime Timestamp { get; set; }
         public string? PropertiesAsJson { get; set; }
     }
 
-    public enum LogSeverity
+    public enum EventLogSeverity
     {
         Trace,
         Debug,
