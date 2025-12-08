@@ -29,9 +29,8 @@ namespace SignalDeck.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateEventRequest request)
         {
-            var createdEvent = request.ToEventFromCreateRequest();
-            await _eventService.CreateAsync(createdEvent);
-            return CreatedAtAction(nameof(GetByApplicationId), new { appId = createdEvent.ApplicationId }, createdEvent.ToDto());
+            var evt = await _eventService.CreateAsync(request);
+            return CreatedAtAction(nameof(GetByApplicationId), new { appId = evt.ApplicationId }, evt);
         }
     }
 }
