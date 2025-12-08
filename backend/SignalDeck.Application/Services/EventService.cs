@@ -33,23 +33,17 @@ namespace SignalDeck.Application.Services
             return events.Select(e => e.ToDto()).ToList();
         }
 
-        public async Task<Event> CreateAsync(Event ev)
+        public async Task<EventDto> CreateAsync(CreateEventRequest request)
         {
-            if (!await _appRepo.ExistsAsync(ev.ApplicationId))
+            bool appExists = await _appRepo.ExistsAsync(request.ApplicationId);
+            if (!appExists)
             {
-                throw new ArgumentException($"Application with ID {ev.ApplicationId} does not exist.");
+                throw new ArgumentException($"Application with ID {request.ApplicationId} does not exist.");
             }
             
-            var createdEvent = await _eventRepo.AddAsync(ev);
-
-            return new Event
-            {
-                Id = createdEvent.Id,
-                ApplicationId = createdEvent.ApplicationId,
-                Name = createdEvent.Name,
-                Timestamp = createdEvent.Timestamp,
-                PropertiesAsJson = createdEvent.PropertiesAsJson
-            };
+            var evt = request.ToEventFromCreateRequest();
+            await _eventRepo.AddAsync(evt);
+            return evt.ToDto();
         }
     }
 }
