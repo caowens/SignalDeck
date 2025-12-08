@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using SignalDeck.Application.Common;
 using SignalDeck.Application.DTOs.ErrorLog;
 using SignalDeck.Domain.Entities;
 
@@ -17,7 +18,8 @@ namespace SignalDeck.Application.Mapping
                 ApplicationId = errorLogModel.ApplicationId,
                 Message = errorLogModel.Message,
                 Severity = errorLogModel.Severity.ToString(),
-                Timestamp = errorLogModel.Timestamp
+                Timestamp = errorLogModel.Timestamp,
+                AdditionalDataAsJson = JsonUtils.Deserialize(errorLogModel.AdditionalDataAsJson)
             };
         }
 
@@ -30,7 +32,7 @@ namespace SignalDeck.Application.Mapping
                 StackTrace = createRequest.StackTrace,
                 Severity = Enum.Parse<ErrorSeverity>(createRequest.Severity),
                 Timestamp = DateTime.UtcNow,
-                AdditionalDataAsJson = createRequest.AdditionalDataAsJson,
+                AdditionalDataAsJson = JsonUtils.Serialize(createRequest.AdditionalDataAsJson)
             };
         }
     }

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using SignalDeck.Application.Common;
 using SignalDeck.Application.DTOs.EventLog;
 using SignalDeck.Domain.Entities;
 
@@ -17,7 +18,8 @@ namespace SignalDeck.Application.Mapping
                 ApplicationId = eventLogModel.ApplicationId,
                 Message = eventLogModel.Message,
                 Severity = eventLogModel.Severity.ToString(),
-                Timestamp = eventLogModel.Timestamp
+                Timestamp = eventLogModel.Timestamp,
+                PropertiesAsJson = JsonUtils.Deserialize(eventLogModel.PropertiesAsJson)
             };
         }
 
@@ -28,7 +30,8 @@ namespace SignalDeck.Application.Mapping
                 ApplicationId = createRequest.ApplicationId,
                 Message = createRequest.Message,
                 Severity = Enum.Parse<EventLogSeverity>(createRequest.Severity),
-                Timestamp = DateTime.UtcNow
+                Timestamp = DateTime.UtcNow,
+                PropertiesAsJson = JsonUtils.Serialize(createRequest.PropertiesAsJson)
             };
         }
     }

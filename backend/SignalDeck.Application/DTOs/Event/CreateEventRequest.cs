@@ -9,6 +9,6 @@ namespace SignalDeck.Application.DTOs.Event
     {
         public int ApplicationId { get; set; }
         public string Name { get; set; } = string.Empty;
-        public string? PropertiesAsJson { get; set; }
+        public Dictionary<string, object>? PropertiesAsJson { get; set; }
     }
 }
