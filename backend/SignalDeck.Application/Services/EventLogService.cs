@@ -39,6 +39,11 @@ namespace SignalDeck.Application.Services
                 throw new ArgumentException($"Application with ID {request.ApplicationId} does not exist.");
             }
 
+            if (!IsValidSeverity(request.Severity))
+            {
+                throw new ArgumentException($"Severity '{request.Severity}' is invalid. Valid values: {string.Join(", ", Enum.GetNames(typeof(EventLogSeverity)))}");
+            }
+
             var eventLog = request.ToEventLogFromCreateRequest();
             await _eventLogRepo.AddAsync(eventLog);
             return eventLog.ToDto();
@@ -54,6 +59,11 @@ namespace SignalDeck.Application.Services
 
             var eventLogs = await _eventLogRepo.GetLogsBySeverityAsync(appId, severity);
             return eventLogs.Select(e => e.ToDto()).ToList();
+        }
+
+        private bool IsValidSeverity(string severity)
+        {
+            return Enum.TryParse<EventLogSeverity>(severity, true, out _);
         }
     }
 }

@@ -1,6 +1,10 @@
+using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Any;
+using Microsoft.OpenApi.Models;
 using SignalDeck.Application.Interfaces;
 using SignalDeck.Application.Services;
+using SignalDeck.Domain.Entities;
 using SignalDeck.Infrastructure.Data;
 using SignalDeck.Infrastructure.Repositories;
 
@@ -9,7 +13,19 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(options =>
+{
+    // Select severity by name in Swagger documentation
+    options.MapType<EventLogSeverity>(() =>
+        new OpenApiSchema
+        {
+            Type = "string",
+            Enum = Enum.GetNames(typeof(EventLogSeverity))
+                    .Select(n => new OpenApiString(n))
+                    .Cast<IOpenApiAny>()
+                    .ToList()
+        });
+});
 
 builder.Services.AddDbContext<SignalDeckDbContext>(options =>
 {
@@ -28,7 +44,11 @@ builder.Services.AddScoped<ErrorLogService>();
 builder.Services.AddScoped<MetricService>();
 builder.Services.AddScoped<EventLogService>();
 
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddJsonOptions(o =>
+    {
+        o.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+    });
 
 var app = builder.Build();
 
