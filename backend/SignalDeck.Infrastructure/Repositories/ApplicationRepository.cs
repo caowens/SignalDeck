@@ -24,9 +24,9 @@ namespace SignalDeck.Infrastructure.Repositories
             return app;
         }
 
-        public Task<bool> ExistsAsync(int id)
+        public async Task<bool> ExistsAsync(int id)
         {
-            return _context.Applications.AnyAsync(a => a.Id == id);
+            return await _context.Applications.AnyAsync(a => a.Id == id);
         }
 
         public async Task<IEnumerable<ApplicationEntity>> GetAllAsync()
@@ -34,9 +34,9 @@ namespace SignalDeck.Infrastructure.Repositories
             return await _context.Applications.AsNoTracking().ToListAsync();
         }
 
-        public Task<ApplicationEntity?> GetByIdAsync(int id)
+        public async Task<ApplicationEntity?> GetByIdAsync(int id)
         {
-            return _context.Applications.AsNoTracking().FirstOrDefaultAsync(a => a.Id == id);
+            return await _context.Applications.AsNoTracking().FirstOrDefaultAsync(a => a.Id == id);
         }
     }
 }
