@@ -22,6 +22,12 @@ namespace SignalDeck.Application.Services
 
         public async Task<IEnumerable<EventDto>> GetByApplicationIdAsync(int appId)
         {
+            bool appExists = await _appRepo.ExistsAsync(appId);
+            if (!appExists)
+            {
+                throw new ArgumentException($"Application with ID {appId} does not exist.");
+            }
+            
             var events = await _eventRepo.GetByApplicationIdAsync(appId);
             
             return events.Select(e => e.ToDto()).ToList();
