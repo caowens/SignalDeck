@@ -12,5 +12,6 @@ namespace SignalDeck.Application.DTOs.EventLog
         public string Message { get; set; } = string.Empty;
         public string Severity { get; set; } = "Info"; // Default
         public DateTime Timestamp { get; set; }
+        public Dictionary<string, object>? PropertiesAsJson { get; set; }
     }
 }

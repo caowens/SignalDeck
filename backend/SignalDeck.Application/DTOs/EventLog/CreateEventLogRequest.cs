@@ -10,6 +10,6 @@ namespace SignalDeck.Application.DTOs.EventLog
         public int ApplicationId { get; set; }
         public string Message { get; set; } = string.Empty;
         public string Severity { get; set; } = "Info"; // Default
-        public string? PropertiesAsJson { get; set; }
+        public Dictionary<string, object>? PropertiesAsJson { get; set; }
     }
 }

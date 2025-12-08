@@ -13,5 +13,6 @@ namespace SignalDeck.Application.DTOs.ErrorLog
         public string Message { get; set; } = string.Empty;
         public string Severity { get; set; } = "Low"; // Default
         public DateTime Timestamp { get; set; }
+        public Dictionary<string, object>? AdditionalDataAsJson { get; set; }
     }
 }
