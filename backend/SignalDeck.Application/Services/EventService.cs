@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using SignalDeck.Application.DTOs.Event;
 using SignalDeck.Application.Interfaces;
+using SignalDeck.Application.Mapping;
 using SignalDeck.Domain.Entities;
 
 namespace SignalDeck.Application.Services
@@ -23,14 +24,7 @@ namespace SignalDeck.Application.Services
         {
             var events = await _eventRepo.GetByApplicationIdAsync(appId);
             
-            return events.Select(e => new EventDto
-            {
-                Id = e.Id,
-                ApplicationId = e.ApplicationId,
-                Name = e.Name,
-                Timestamp = e.Timestamp,
-                PropertiesAsJson = e.PropertiesAsJson
-            });
+            return events.Select(e => e.ToDto()).ToList();
         }
 
         public async Task<Event> CreateAsync(Event ev)

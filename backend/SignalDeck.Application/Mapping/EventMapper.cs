@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using SignalDeck.Application.Common;
 using SignalDeck.Application.DTOs.Event;
 using SignalDeck.Domain.Entities;
 
@@ -17,7 +18,7 @@ namespace SignalDeck.Application.Mapping
                 ApplicationId = evModel.ApplicationId,
                 Name = evModel.Name,
                 Timestamp = evModel.Timestamp,
-                PropertiesAsJson = evModel.PropertiesAsJson
+                PropertiesAsJson = JsonUtils.Deserialize(evModel.PropertiesAsJson)
             };
         }
 
@@ -27,7 +28,7 @@ namespace SignalDeck.Application.Mapping
             {
                 ApplicationId = createRequest.ApplicationId,
                 Name = createRequest.Name,
-                PropertiesAsJson = createRequest.PropertiesAsJson,
+                PropertiesAsJson = JsonUtils.Serialize(createRequest.PropertiesAsJson),
                 Timestamp = DateTime.UtcNow
             };
         }

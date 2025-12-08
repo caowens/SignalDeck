@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using SignalDeck.Application.Common;
 using SignalDeck.Application.DTOs.Metric;
 using SignalDeck.Domain.Entities;
 
@@ -18,7 +19,7 @@ namespace SignalDeck.Application.Mapping
                 Name = metricModel.Name,
                 Value = metricModel.Value,
                 Timestamp = metricModel.Timestamp,
-                PropertiesAsJson = metricModel.PropertiesAsJson
+                PropertiesAsJson = JsonUtils.Deserialize(metricModel.PropertiesAsJson)
             };
         }
 
@@ -30,7 +31,7 @@ namespace SignalDeck.Application.Mapping
                 Name = createRequest.Name,
                 Value = createRequest.Value,
                 Timestamp = DateTime.UtcNow,
-                PropertiesAsJson = createRequest.PropertiesAsJson
+                PropertiesAsJson = JsonUtils.Serialize(createRequest.PropertiesAsJson)
             };
         }
     }
