@@ -31,7 +31,7 @@ namespace SignalDeck.Application.Mapping
                 Message = createRequest.Message,
                 StackTrace = createRequest.StackTrace,
                 Severity = Enum.Parse<ErrorSeverity>(createRequest.Severity),
-                Timestamp = DateTime.UtcNow,
+                Timestamp = (createRequest.Timestamp?.ToUniversalTime()) ?? DateTime.UtcNow,
                 AdditionalDataAsJson = JsonUtils.Serialize(createRequest.AdditionalDataAsJson)
             };
         }
