@@ -30,7 +30,7 @@ namespace SignalDeck.Application.Mapping
                 ApplicationId = createRequest.ApplicationId,
                 Message = createRequest.Message,
                 Severity = Enum.Parse<EventLogSeverity>(createRequest.Severity),
-                Timestamp = DateTime.UtcNow,
+                Timestamp = (createRequest.Timestamp?.ToUniversalTime()) ?? DateTime.UtcNow,
                 PropertiesAsJson = JsonUtils.Serialize(createRequest.PropertiesAsJson)
             };
         }

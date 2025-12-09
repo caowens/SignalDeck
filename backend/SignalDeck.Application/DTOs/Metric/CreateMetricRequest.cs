@@ -10,6 +10,7 @@ namespace SignalDeck.Application.DTOs.Metric
         public int ApplicationId { get; set; }
         public string Name { get; set; } = string.Empty;
         public double Value { get; set; }
+        public DateTime? Timestamp { get; set; }
         public Dictionary<string, object>? PropertiesAsJson { get; set; }
     }
 }
