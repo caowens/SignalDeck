@@ -5,15 +5,16 @@ using System.Threading.Tasks;
 using SignalDeck.Application.DTOs.ErrorLog;
 using SignalDeck.Application.Interfaces;
 using SignalDeck.Application.Mapping;
+using SignalDeck.Application.Services.ErrorLogs;
 using SignalDeck.Domain.Entities;
 
 namespace SignalDeck.Application.Services
 {
-    public class ErrorLogService
+    public class ErrorLogService : IErrorLogService
     {
         private readonly IErrorLogRepository _errorLogRepo;
         private readonly IApplicationRepository _appRepo;
-        
+
         public ErrorLogService(IErrorLogRepository errorLogRepo, IApplicationRepository appRepo)
         {
             _errorLogRepo = errorLogRepo;
@@ -54,6 +55,6 @@ namespace SignalDeck.Application.Services
         {
             return Enum.TryParse<ErrorSeverity>(severity, true, out _);
         }
-        
+
     }
 }
