@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using SignalDeck.Application.DTOs.EventLog;
 using SignalDeck.Application.Services;
+using SignalDeck.Application.Services.EventLogs;
 using SignalDeck.Domain.Entities;
 
 namespace SignalDeck.Api.Controllers
@@ -13,8 +14,8 @@ namespace SignalDeck.Api.Controllers
     [Route("api/[controller]")]
     public class EventLogsController : ControllerBase
     {
-        private readonly EventLogService _eventLogService;
-        public EventLogsController(EventLogService eventLogService)
+        private readonly IEventLogService _eventLogService;
+        public EventLogsController(IEventLogService eventLogService)
         {
             _eventLogService = eventLogService;
         }

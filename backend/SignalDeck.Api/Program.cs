@@ -6,6 +6,7 @@ using SignalDeck.Application.Interfaces;
 using SignalDeck.Application.Services;
 using SignalDeck.Application.Services.Applications;
 using SignalDeck.Application.Services.ErrorLogs;
+using SignalDeck.Application.Services.EventLogs;
 using SignalDeck.Domain.Entities;
 using SignalDeck.Infrastructure.Data;
 using SignalDeck.Infrastructure.Repositories;
@@ -44,7 +45,7 @@ builder.Services.AddScoped<IApplicationService, ApplicationService>();
 builder.Services.AddScoped<EventService>();
 builder.Services.AddScoped<IErrorLogService, ErrorLogService>();
 builder.Services.AddScoped<MetricService>();
-builder.Services.AddScoped<EventLogService>();
+builder.Services.AddScoped<IEventLogService, EventLogService>();
 
 builder.Services.AddControllers()
     .AddJsonOptions(o =>
