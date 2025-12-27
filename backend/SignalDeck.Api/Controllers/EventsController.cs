@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using SignalDeck.Application.DTOs.Event;
 using SignalDeck.Application.Mapping;
 using SignalDeck.Application.Services;
+using SignalDeck.Application.Services.Events;
 
 namespace SignalDeck.Api.Controllers
 {
@@ -13,8 +14,8 @@ namespace SignalDeck.Api.Controllers
     [Route("api/[controller]")]
     public class EventsController : ControllerBase
     {
-        private readonly EventService _eventService;
-        public EventsController(EventService eventService)
+        private readonly IEventService _eventService;
+        public EventsController(IEventService eventService)
         {
             _eventService = eventService;
         }
