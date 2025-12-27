@@ -5,11 +5,12 @@ using System.Threading.Tasks;
 using SignalDeck.Application.DTOs.EventLog;
 using SignalDeck.Application.Interfaces;
 using SignalDeck.Application.Mapping;
+using SignalDeck.Application.Services.EventLogs;
 using SignalDeck.Domain.Entities;
 
 namespace SignalDeck.Application.Services
 {
-    public class EventLogService
+    public class EventLogService : IEventLogService
     {
         private readonly IEventLogRepository _eventLogRepo;
         private readonly IApplicationRepository _appRepo;

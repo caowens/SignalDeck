@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using SignalDeck.Application.DTOs.Metric;
 using SignalDeck.Application.Services;
+using SignalDeck.Application.Services.Metrics;
 
 namespace SignalDeck.Api.Controllers
 {
@@ -12,8 +13,8 @@ namespace SignalDeck.Api.Controllers
     [Route("api/[controller]")]
     public class MetricsController : ControllerBase
     {
-        private readonly MetricService _metricService;
-        public MetricsController(MetricService metricService)
+        private readonly IMetricService _metricService;
+        public MetricsController(IMetricService metricService)
         {
             _metricService = metricService;
         }

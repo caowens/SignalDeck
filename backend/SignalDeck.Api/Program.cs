@@ -4,6 +4,11 @@ using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
 using SignalDeck.Application.Interfaces;
 using SignalDeck.Application.Services;
+using SignalDeck.Application.Services.Applications;
+using SignalDeck.Application.Services.ErrorLogs;
+using SignalDeck.Application.Services.EventLogs;
+using SignalDeck.Application.Services.Events;
+using SignalDeck.Application.Services.Metrics;
 using SignalDeck.Domain.Entities;
 using SignalDeck.Infrastructure.Data;
 using SignalDeck.Infrastructure.Repositories;
@@ -38,11 +43,11 @@ builder.Services.AddScoped<IErrorLogRepository, ErrorLogRepository>();
 builder.Services.AddScoped<IMetricRepository, MetricRepository>();
 builder.Services.AddScoped<IEventLogRepository, EventLogRepository>();
 
-builder.Services.AddScoped<ApplicationService>();
-builder.Services.AddScoped<EventService>();
-builder.Services.AddScoped<ErrorLogService>();
-builder.Services.AddScoped<MetricService>();
-builder.Services.AddScoped<EventLogService>();
+builder.Services.AddScoped<IApplicationService, ApplicationService>();
+builder.Services.AddScoped<IEventService, EventService>();
+builder.Services.AddScoped<IErrorLogService, ErrorLogService>();
+builder.Services.AddScoped<IMetricService, MetricService>();
+builder.Services.AddScoped<IEventLogService, EventLogService>();
 
 builder.Services.AddControllers()
     .AddJsonOptions(o =>

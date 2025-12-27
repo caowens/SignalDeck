@@ -5,11 +5,12 @@ using System.Threading.Tasks;
 using SignalDeck.Application.DTOs.Event;
 using SignalDeck.Application.Interfaces;
 using SignalDeck.Application.Mapping;
+using SignalDeck.Application.Services.Events;
 using SignalDeck.Domain.Entities;
 
 namespace SignalDeck.Application.Services
 {
-    public class EventService
+    public class EventService : IEventService
     {
         private readonly IEventRepository _eventRepo;
         private readonly IApplicationRepository _appRepo;
@@ -27,9 +28,9 @@ namespace SignalDeck.Application.Services
             {
                 throw new ArgumentException($"Application with ID {appId} does not exist.");
             }
-            
+
             var events = await _eventRepo.GetByApplicationIdAsync(appId);
-            
+
             return events.Select(e => e.ToDto()).ToList();
         }
 
@@ -40,7 +41,7 @@ namespace SignalDeck.Application.Services
             {
                 throw new ArgumentException($"Application with ID {request.ApplicationId} does not exist.");
             }
-            
+
             var evt = request.ToEventFromCreateRequest();
             await _eventRepo.AddAsync(evt);
             return evt.ToDto();

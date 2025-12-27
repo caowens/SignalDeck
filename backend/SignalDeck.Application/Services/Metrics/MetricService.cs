@@ -5,10 +5,11 @@ using System.Threading.Tasks;
 using SignalDeck.Application.DTOs.Metric;
 using SignalDeck.Application.Interfaces;
 using SignalDeck.Application.Mapping;
+using SignalDeck.Application.Services.Metrics;
 
 namespace SignalDeck.Application.Services
 {
-    public class MetricService
+    public class MetricService : IMetricService
     {
         private readonly IMetricRepository _metricRepo;
         private readonly IApplicationRepository _appRepo;

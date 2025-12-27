@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using SignalDeck.Application.DTOs.ErrorLog;
 using SignalDeck.Application.Services;
+using SignalDeck.Application.Services.ErrorLogs;
 
 namespace SignalDeck.Api.Controllers
 {
@@ -12,8 +13,8 @@ namespace SignalDeck.Api.Controllers
     [Route("api/[controller]")]
     public class ErrorLogController : ControllerBase
     {
-        private readonly ErrorLogService _errorLogService;
-        public ErrorLogController(ErrorLogService errorLogService)
+        private readonly IErrorLogService _errorLogService;
+        public ErrorLogController(IErrorLogService errorLogService)
         {
             _errorLogService = errorLogService;
         }
