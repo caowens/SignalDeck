@@ -8,6 +8,7 @@ using SignalDeck.Application.Services.Applications;
 using SignalDeck.Application.Services.ErrorLogs;
 using SignalDeck.Application.Services.EventLogs;
 using SignalDeck.Application.Services.Events;
+using SignalDeck.Application.Services.Metrics;
 using SignalDeck.Domain.Entities;
 using SignalDeck.Infrastructure.Data;
 using SignalDeck.Infrastructure.Repositories;
@@ -45,7 +46,7 @@ builder.Services.AddScoped<IEventLogRepository, EventLogRepository>();
 builder.Services.AddScoped<IApplicationService, ApplicationService>();
 builder.Services.AddScoped<IEventService, EventService>();
 builder.Services.AddScoped<IErrorLogService, ErrorLogService>();
-builder.Services.AddScoped<MetricService>();
+builder.Services.AddScoped<IMetricService, MetricService>();
 builder.Services.AddScoped<IEventLogService, EventLogService>();
 
 builder.Services.AddControllers()
