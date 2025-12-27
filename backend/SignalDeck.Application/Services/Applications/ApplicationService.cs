@@ -5,11 +5,12 @@ using System.Threading.Tasks;
 using SignalDeck.Application.DTOs.Application;
 using SignalDeck.Application.Interfaces;
 using SignalDeck.Application.Mapping;
+using SignalDeck.Application.Services.Applications;
 using ApplicationEntity = SignalDeck.Domain.Entities.Application;
 
 namespace SignalDeck.Application.Services
 {
-    public class ApplicationService
+    public class ApplicationService : IApplicationService
     {
         private readonly IApplicationRepository _appRepo;
 

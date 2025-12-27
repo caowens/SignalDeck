@@ -4,6 +4,7 @@ using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
 using SignalDeck.Application.Interfaces;
 using SignalDeck.Application.Services;
+using SignalDeck.Application.Services.Applications;
 using SignalDeck.Domain.Entities;
 using SignalDeck.Infrastructure.Data;
 using SignalDeck.Infrastructure.Repositories;
@@ -38,7 +39,7 @@ builder.Services.AddScoped<IErrorLogRepository, ErrorLogRepository>();
 builder.Services.AddScoped<IMetricRepository, MetricRepository>();
 builder.Services.AddScoped<IEventLogRepository, EventLogRepository>();
 
-builder.Services.AddScoped<ApplicationService>();
+builder.Services.AddScoped<IApplicationService, ApplicationService>();
 builder.Services.AddScoped<EventService>();
 builder.Services.AddScoped<ErrorLogService>();
 builder.Services.AddScoped<MetricService>();

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using SignalDeck.Application.DTOs.Application;
 using SignalDeck.Application.Services;
 using SignalDeck.Application.Mapping;
+using SignalDeck.Application.Services.Applications;
 
 namespace SignalDeck.Api.Controllers
 {
@@ -13,8 +14,8 @@ namespace SignalDeck.Api.Controllers
     [Route("api/[controller]")]
     public class ApplicationsController : ControllerBase
     {
-        private readonly ApplicationService _appService;
-        public ApplicationsController(ApplicationService appService)
+        private readonly IApplicationService _appService;
+        public ApplicationsController(IApplicationService appService)
         {
             _appService = appService;
         }
