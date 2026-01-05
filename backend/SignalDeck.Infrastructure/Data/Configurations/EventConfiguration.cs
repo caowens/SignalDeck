@@ -14,9 +14,18 @@ namespace SignalDeck.Infrastructure.Data.Configurations
         {
             builder.HasKey(e => e.Id);
 
+            builder.Property(e => e.Id)
+                .ValueGeneratedOnAdd()
+                .HasColumnType("uuid"); // Explicitly set for Postgres
+
             builder.Property(e => e.Name)
                 .IsRequired()
                 .HasMaxLength(100);
+            
+            // Ensure the Foreign Key is treated as a UUID
+            builder.Property(e => e.ApplicationId)
+                .IsRequired()
+                .HasColumnType("uuid");
 
             builder.HasOne(e => e.Application)
                 .WithMany(a => a.Events)
