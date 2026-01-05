@@ -21,7 +21,7 @@ namespace SignalDeck.Api.Controllers
         }
 
         [HttpGet("application/{appId}")]
-        public async Task<IActionResult> GetByApplicationId(int appId)
+        public async Task<IActionResult> GetByApplicationId(Guid appId)
         {
             var events = await _eventService.GetByApplicationIdAsync(appId);
             return Ok(events);

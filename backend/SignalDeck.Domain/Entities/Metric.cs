@@ -8,7 +8,7 @@ namespace SignalDeck.Domain.Entities
 {
     public class Metric : BaseEntity
     {
-        public int ApplicationId { get; set; }
+        public Guid ApplicationId { get; set; }
         public Application Application { get; set; } = default!;
         public string Name { get; set; } = string.Empty;
         public double Value { get; set; }

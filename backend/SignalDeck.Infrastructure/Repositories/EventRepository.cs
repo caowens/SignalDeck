@@ -23,7 +23,7 @@ namespace SignalDeck.Infrastructure.Repositories
             return ev;
         }
 
-        public async Task<IEnumerable<Event>> GetByApplicationIdAsync(int appId)
+        public async Task<IEnumerable<Event>> GetByApplicationIdAsync(Guid appId)
         {
             return await _context.Events
                 .Where(e => e.ApplicationId == appId)

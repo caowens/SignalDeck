@@ -7,8 +7,8 @@ namespace SignalDeck.Application.DTOs.Metric
 {
     public class MetricDto
     {
-        public int Id { get; set; }
-        public int ApplicationId { get; set; }
+        public Guid Id { get; set; }
+        public Guid ApplicationId { get; set; }
         public string Name { get; set; } = string.Empty;
         public double Value { get; set; }
         public DateTime Timestamp { get; set; }

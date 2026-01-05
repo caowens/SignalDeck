@@ -29,7 +29,7 @@ namespace SignalDeck.Infrastructure.Repositories
             return await _context.Metrics.AnyAsync(m => m.Name == metricName);
         }
 
-        public async Task<IEnumerable<Metric>> GetByApplicationIdAsync(int appId)
+        public async Task<IEnumerable<Metric>> GetByApplicationIdAsync(Guid appId)
         {
             return await _context.Metrics
                 .Where(m => m.ApplicationId == appId)
@@ -37,7 +37,7 @@ namespace SignalDeck.Infrastructure.Repositories
                 .ToListAsync();
         }
 
-        public async Task<IEnumerable<Metric>> QueryMetricsAsync(int appId, string metricName)
+        public async Task<IEnumerable<Metric>> QueryMetricsAsync(Guid appId, string metricName)
         {
             return await _context.Metrics
                 .Where(m => m.ApplicationId == appId && m.Name == metricName)

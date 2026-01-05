@@ -9,8 +9,8 @@ namespace SignalDeck.Application.Interfaces
     public interface IApplicationRepository
     {
         Task<IEnumerable<ApplicationEntity>> GetAllAsync();
-        Task<ApplicationEntity?> GetByIdAsync(int id);
+        Task<ApplicationEntity?> GetByIdAsync(Guid id);
         Task<ApplicationEntity> AddAsync(ApplicationEntity app);
-        Task<bool> ExistsAsync(int id);
+        Task<bool> ExistsAsync(Guid id);
     }
 }

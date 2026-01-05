@@ -24,7 +24,7 @@ namespace SignalDeck.Infrastructure.Repositories
             return eventLog;
         }
 
-        public async Task<IEnumerable<EventLog>> GetByApplicationIdAsync(int appId)
+        public async Task<IEnumerable<EventLog>> GetByApplicationIdAsync(Guid appId)
         {
             return await _context.EventLogs
                 .Where(e => e.ApplicationId == appId)
@@ -32,7 +32,7 @@ namespace SignalDeck.Infrastructure.Repositories
                 .ToListAsync();
         }
 
-        public async Task<IEnumerable<EventLog>> GetLogsBySeverityAsync(int appId, EventLogSeverity severity)
+        public async Task<IEnumerable<EventLog>> GetLogsBySeverityAsync(Guid appId, EventLogSeverity severity)
         {
             return await _context.EventLogs
                 .Where(e => e.ApplicationId == appId && e.Severity == severity)

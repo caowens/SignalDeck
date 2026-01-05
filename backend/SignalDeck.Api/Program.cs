@@ -34,7 +34,7 @@ builder.Services.AddSwaggerGen(options =>
 
 builder.Services.AddDbContext<SignalDeckDbContext>(options =>
 {
-    options.UseSqlServer(builder.Configuration.GetConnectionString("SignalDeckDatabase"));
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
 builder.Services.AddScoped<IApplicationRepository, ApplicationRepository>();

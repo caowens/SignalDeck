@@ -8,7 +8,7 @@ namespace SignalDeck.Application.Interfaces
 {
     public interface IEventRepository
     {
-        Task<IEnumerable<Event>> GetByApplicationIdAsync(int appId);
+        Task<IEnumerable<Event>> GetByApplicationIdAsync(Guid appId);
         Task<Event> AddAsync(Event ev);
     }
 }

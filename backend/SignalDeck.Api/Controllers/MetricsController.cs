@@ -20,14 +20,14 @@ namespace SignalDeck.Api.Controllers
         }
 
         [HttpGet("application/{appId}")]
-        public async Task<IActionResult> GetByApplicationId(int appId)
+        public async Task<IActionResult> GetByApplicationId(Guid appId)
         {
             var metrics = await _metricService.GetByApplicationIdAsync(appId);
             return Ok(metrics);
         }
 
         [HttpGet("{appId}/name/{metricName}")]
-        public async Task<IActionResult> GetByName(int appId, string metricName)
+        public async Task<IActionResult> GetByName(Guid appId, string metricName)
         {
             var metrics = await _metricService.GetMetricsByNameAsync(appId, metricName);
             if (metrics == null || !metrics.Any())
