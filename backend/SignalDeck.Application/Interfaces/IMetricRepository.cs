@@ -8,9 +8,9 @@ namespace SignalDeck.Application.Interfaces
 {
     public interface IMetricRepository
     {
-        Task<IEnumerable<Metric>> GetByApplicationIdAsync(int appId);
+        Task<IEnumerable<Metric>> GetByApplicationIdAsync(Guid appId);
         Task<Metric> AddAsync(Metric metric);
-        Task<IEnumerable<Metric>> QueryMetricsAsync(int appId, string metricName);
+        Task<IEnumerable<Metric>> QueryMetricsAsync(Guid appId, string metricName);
         Task<bool> ExistsAsync(string metricName);
     }
 }

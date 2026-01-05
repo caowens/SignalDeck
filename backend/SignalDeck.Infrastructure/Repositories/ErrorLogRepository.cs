@@ -23,7 +23,7 @@ namespace SignalDeck.Infrastructure.Repositories
             return errorLog;
         }
 
-        public async Task<IEnumerable<ErrorLog>> GetByApplicationIdAsync(int appId)
+        public async Task<IEnumerable<ErrorLog>> GetByApplicationIdAsync(Guid appId)
         {
             return await _context.ErrorLogs
                 .Where(e => e.ApplicationId == appId)

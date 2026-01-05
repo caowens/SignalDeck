@@ -8,7 +8,7 @@ namespace SignalDeck.Domain.Entities
 {
     public class EventLog : BaseEntity
     {
-        public int ApplicationId { get; set; }
+        public Guid ApplicationId { get; set; }
         public Application Application { get; set; } = default!;
         public string Message { get; set; } = string.Empty;
         public EventLogSeverity Severity { get; set; } = EventLogSeverity.Info;

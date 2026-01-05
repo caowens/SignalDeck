@@ -9,6 +9,6 @@ namespace SignalDeck.Application.Services.ErrorLogs
     public interface IErrorLogService
     {
         Task<ErrorLogDto> CreateAsync(CreateErrorLogRequest request);
-        Task<IEnumerable<ErrorLogDto>> GetByApplicationIdAsync(int appId);
+        Task<IEnumerable<ErrorLogDto>> GetByApplicationIdAsync(Guid appId);
     }
 }

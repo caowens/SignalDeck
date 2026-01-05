@@ -19,7 +19,7 @@ namespace SignalDeck.Application.Services
             _appRepo = appRepo;
         }
 
-        public async Task<IEnumerable<MetricDto>> GetByApplicationIdAsync(int appId)
+        public async Task<IEnumerable<MetricDto>> GetByApplicationIdAsync(Guid appId)
         {
             bool appExists = await _appRepo.ExistsAsync(appId);
             if (!appExists)
@@ -44,7 +44,7 @@ namespace SignalDeck.Application.Services
             return metric.ToDto();
         }
 
-        public async Task<IEnumerable<MetricDto>> GetMetricsByNameAsync(int appId, string metricName)
+        public async Task<IEnumerable<MetricDto>> GetMetricsByNameAsync(Guid appId, string metricName)
         {
             bool appExists = await _appRepo.ExistsAsync(appId);
             if (!appExists)

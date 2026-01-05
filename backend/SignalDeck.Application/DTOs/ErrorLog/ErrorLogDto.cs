@@ -8,8 +8,8 @@ namespace SignalDeck.Application.DTOs.ErrorLog
 {
     public class ErrorLogDto
     {
-        public int Id { get; set; }
-        public int ApplicationId { get; set; }
+        public Guid Id { get; set; }
+        public Guid ApplicationId { get; set; }
         public string Message { get; set; } = string.Empty;
         public string Severity { get; set; } = "Low"; // Default
         public DateTime Timestamp { get; set; }

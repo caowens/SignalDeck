@@ -20,7 +20,7 @@ namespace SignalDeck.Application.Services
             _appRepo = appRepo;
         }
 
-        public async Task<IEnumerable<EventLogDto>> GetByApplicationIdAsync(int appId)
+        public async Task<IEnumerable<EventLogDto>> GetByApplicationIdAsync(Guid appId)
         {
             bool appExists = await _appRepo.ExistsAsync(appId);
             if (!appExists)
@@ -50,7 +50,7 @@ namespace SignalDeck.Application.Services
             return eventLog.ToDto();
         }
 
-        public async Task<IEnumerable<EventLogDto>> GetLogsBySeverityAsync(int appId, EventLogSeverity severity)
+        public async Task<IEnumerable<EventLogDto>> GetLogsBySeverityAsync(Guid appId, EventLogSeverity severity)
         {
             bool appExists = await _appRepo.ExistsAsync(appId);
             if (!appExists)

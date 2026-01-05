@@ -8,7 +8,7 @@ namespace SignalDeck.Application.DTOs.ErrorLog
 {
     public class CreateErrorLogRequest
     {
-        public int ApplicationId { get; set; }
+        public Guid ApplicationId { get; set; }
         public string Message { get; set; } = string.Empty;
         public string? StackTrace { get; set; }
         public string Severity { get; set; } = "Low"; // Default

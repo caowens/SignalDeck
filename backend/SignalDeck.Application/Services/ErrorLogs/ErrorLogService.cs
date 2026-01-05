@@ -21,7 +21,7 @@ namespace SignalDeck.Application.Services
             _appRepo = appRepo;
         }
 
-        public async Task<IEnumerable<ErrorLogDto>> GetByApplicationIdAsync(int appId)
+        public async Task<IEnumerable<ErrorLogDto>> GetByApplicationIdAsync(Guid appId)
         {
             bool appExists = await _appRepo.ExistsAsync(appId);
             if (!appExists)

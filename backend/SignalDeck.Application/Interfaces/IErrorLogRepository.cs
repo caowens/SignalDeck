@@ -8,7 +8,7 @@ namespace SignalDeck.Application.Interfaces
 {
     public interface IErrorLogRepository
     {
-        Task<IEnumerable<ErrorLog>> GetByApplicationIdAsync(int appId);
+        Task<IEnumerable<ErrorLog>> GetByApplicationIdAsync(Guid appId);
         Task<ErrorLog> AddAsync(ErrorLog errorLog);
     }
 }

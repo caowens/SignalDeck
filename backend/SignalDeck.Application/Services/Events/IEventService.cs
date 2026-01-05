@@ -9,6 +9,6 @@ namespace SignalDeck.Application.Services.Events
     public interface IEventService
     {
         Task<EventDto> CreateAsync(CreateEventRequest request);
-        Task<IEnumerable<EventDto>> GetByApplicationIdAsync(int appId);
+        Task<IEnumerable<EventDto>> GetByApplicationIdAsync(Guid appId);
     }
 }

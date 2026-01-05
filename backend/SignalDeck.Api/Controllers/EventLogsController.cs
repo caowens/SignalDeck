@@ -21,14 +21,14 @@ namespace SignalDeck.Api.Controllers
         }
 
         [HttpGet("{appId}")]
-        public async Task<IActionResult> GetByApplicationId(int appId)
+        public async Task<IActionResult> GetByApplicationId(Guid appId)
         {
             var eventLogs = await _eventLogService.GetByApplicationIdAsync(appId);
             return Ok(eventLogs);
         }
 
         [HttpGet("{appId}/severity/{severity}")]
-        public async Task<IActionResult> GetLogsBySeverity(int appId, EventLogSeverity severity)
+        public async Task<IActionResult> GetLogsBySeverity(Guid appId, EventLogSeverity severity)
         {
             var eventLogs = await _eventLogService.GetLogsBySeverityAsync(appId, severity);
             return Ok(eventLogs);

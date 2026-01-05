@@ -8,8 +8,8 @@ namespace SignalDeck.Application.Interfaces
 {
     public interface IEventLogRepository
     {
-        Task<IEnumerable<EventLog>> GetByApplicationIdAsync(int appId);
-        Task<IEnumerable<EventLog>> GetLogsBySeverityAsync(int appId, EventLogSeverity severity);
+        Task<IEnumerable<EventLog>> GetByApplicationIdAsync(Guid appId);
+        Task<IEnumerable<EventLog>> GetLogsBySeverityAsync(Guid appId, EventLogSeverity severity);
         Task<EventLog> AddAsync(EventLog eventLog);
 
     }
