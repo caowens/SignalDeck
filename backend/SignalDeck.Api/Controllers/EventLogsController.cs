@@ -11,7 +11,7 @@ using SignalDeck.Domain.Entities;
 namespace SignalDeck.Api.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     public class EventLogsController : ControllerBase
     {
         private readonly IEventLogService _eventLogService;
