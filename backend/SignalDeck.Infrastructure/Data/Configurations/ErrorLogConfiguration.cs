@@ -31,6 +31,9 @@ namespace SignalDeck.Infrastructure.Data.Configurations
                 .WithMany(a => a.ErrorLogs)
                 .HasForeignKey(e => e.ApplicationId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            // Index to optimize queries by ApplicationId and CreatedOn
+            builder.HasIndex(e => new { e.ApplicationId, e.CreatedOn });
         }
     }
 }

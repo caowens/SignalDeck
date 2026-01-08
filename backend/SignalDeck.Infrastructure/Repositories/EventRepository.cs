@@ -30,5 +30,23 @@ namespace SignalDeck.Infrastructure.Repositories
                 .AsNoTracking()
                 .ToListAsync();
         }
+
+        public async Task<int> GetCountSinceAsync(Guid appId, DateTime since)
+        {
+            return await _context.Events
+                .Where(e => e.ApplicationId == appId)
+                .Where(e => e.CreatedOn >= since)
+                .CountAsync();
+        }
+
+        public async Task<List<Event>> GetRecentAsync(Guid appId, int count)
+        {
+            return await _context.Events
+                .Where(e => e.ApplicationId == appId)
+                .OrderByDescending(e => e.CreatedOn)
+                .Take(count)
+                .AsNoTracking()
+                .ToListAsync();
+        }
     }
 }

@@ -10,5 +10,7 @@ namespace SignalDeck.Application.Persistence
     {
         Task<IEnumerable<Event>> GetByApplicationIdAsync(Guid appId);
         Task<Event> AddAsync(Event ev);
+        Task<int> GetCountSinceAsync(Guid appId, DateTime since);
+        Task<List<Event>> GetRecentAsync(Guid appId, int count);
     }
 }
