@@ -4,6 +4,7 @@ using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
 using SignalDeck.Application.Persistence;
 using SignalDeck.Application.Services;
+using SignalDeck.Application.Services.Analytics;
 using SignalDeck.Application.Services.Applications;
 using SignalDeck.Application.Services.ErrorLogs;
 using SignalDeck.Application.Services.EventLogs;
@@ -48,6 +49,7 @@ builder.Services.AddScoped<IEventService, EventService>();
 builder.Services.AddScoped<IErrorLogService, ErrorLogService>();
 builder.Services.AddScoped<IMetricService, MetricService>();
 builder.Services.AddScoped<IEventLogService, EventLogService>();
+builder.Services.AddScoped<IAnalyticsService, AnalyticsService>();
 
 builder.Services.AddControllers()
     .AddJsonOptions(o =>
