@@ -10,5 +10,7 @@ namespace SignalDeck.Application.Persistence
     {
         Task<IEnumerable<ErrorLog>> GetByApplicationIdAsync(Guid appId);
         Task<ErrorLog> AddAsync(ErrorLog errorLog);
+        Task<int> GetCountSinceAsync(Guid appId, DateTime since);
+        Task<List<ErrorLog>> GetRecentAsync(Guid appId, int count);
     }
 }
