@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using SignalDeck.Domain.Entities;
 
-namespace SignalDeck.Application.Interfaces
+namespace SignalDeck.Application.Persistence
 {
     public interface IMetricRepository
     {

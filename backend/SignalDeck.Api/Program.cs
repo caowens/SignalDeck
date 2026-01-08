@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
-using SignalDeck.Application.Interfaces;
+using SignalDeck.Application.Persistence;
 using SignalDeck.Application.Services;
 using SignalDeck.Application.Services.Applications;
 using SignalDeck.Application.Services.ErrorLogs;

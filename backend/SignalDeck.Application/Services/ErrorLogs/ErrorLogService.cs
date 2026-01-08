@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using SignalDeck.Application.DTOs.ErrorLog;
-using SignalDeck.Application.Interfaces;
+using SignalDeck.Application.Persistence;
 using SignalDeck.Application.Mapping;
 using SignalDeck.Application.Services.ErrorLogs;
 using SignalDeck.Domain.Entities;

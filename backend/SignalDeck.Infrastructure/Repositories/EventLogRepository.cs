@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using SignalDeck.Application.Interfaces;
+using SignalDeck.Application.Persistence;
 using SignalDeck.Domain.Entities;
 using SignalDeck.Infrastructure.Data;
 
