@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ApplicationEntity = SignalDeck.Domain.Entities.Application;
 
-namespace SignalDeck.Application.Interfaces
+namespace SignalDeck.Application.Persistence
 {
     public interface IApplicationRepository
     {

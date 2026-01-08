@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using SignalDeck.Application.DTOs.EventLog;
-using SignalDeck.Application.Interfaces;
+using SignalDeck.Application.Persistence;
 using SignalDeck.Application.Mapping;
 using SignalDeck.Application.Services.EventLogs;
 using SignalDeck.Domain.Entities;

@@ -11,7 +11,7 @@ using SignalDeck.Application.Services.Applications;
 namespace SignalDeck.Api.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     public class ApplicationsController : ControllerBase
     {
         private readonly IApplicationService _appService;

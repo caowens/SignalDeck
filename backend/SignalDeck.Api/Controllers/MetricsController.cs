@@ -10,7 +10,7 @@ using SignalDeck.Application.Services.Metrics;
 namespace SignalDeck.Api.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     public class MetricsController : ControllerBase
     {
         private readonly IMetricService _metricService;
