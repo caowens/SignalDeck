@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using SignalDeck.Domain.Entities;
+using SignalDeck.Api.Data.Entities;
 
 namespace SignalDeck.Api.Data.Configurations
 {
@@ -13,9 +13,6 @@ namespace SignalDeck.Api.Data.Configurations
         public void Configure(EntityTypeBuilder<SignalEntity> builder)
         {
             builder.HasKey(s => s.InternalId);
-
-            builder.Property(s => s.InternalId)
-                .ValueGeneratedOnAdd();
 
             builder.Property(s => s.Name)
                 .IsRequired()
@@ -28,6 +25,8 @@ namespace SignalDeck.Api.Data.Configurations
                 .WithMany(a => a.Signals)
                 .HasForeignKey(s => s.ApplicationId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            builder.OwnsOne(s => s.Properties, builder => builder.ToJson());
 
             builder.Property(s => s.EventTimestamp)
                 .IsRequired();

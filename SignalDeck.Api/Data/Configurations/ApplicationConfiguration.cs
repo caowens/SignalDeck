@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using ApplicationEntity = SignalDeck.Domain.Entities.Application;
+using ApplicationEntity = SignalDeck.Api.Data.Entities.Application;
 
 namespace SignalDeck.Api.Data.Configurations
 {
@@ -14,8 +14,7 @@ namespace SignalDeck.Api.Data.Configurations
         {
             builder.HasKey(a => a.InternalId);
 
-            builder.Property(a => a.InternalId)
-                .ValueGeneratedOnAdd();
+            builder.HasIndex(a => a.ApiKey).IsUnique();
 
             builder.Property(a => a.Name)
                 .IsRequired()
