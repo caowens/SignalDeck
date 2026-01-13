@@ -13,7 +13,7 @@ namespace SignalDeck.Application.Mapping
         {
             return new ApplicationDto
             {
-                Id = appModel.Id,
+                Id = appModel.InternalId,
                 Name = appModel.Name
             };
         }

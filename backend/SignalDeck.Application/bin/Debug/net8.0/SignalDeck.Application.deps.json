@@ -1,0 +1,39 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "SignalDeck.Application/1.0.0": {
+        "dependencies": {
+          "SignalDeck.Domain": "1.0.0"
+        },
+        "runtime": {
+          "SignalDeck.Application.dll": {}
+        }
+      },
+      "SignalDeck.Domain/1.0.0": {
+        "runtime": {
+          "SignalDeck.Domain.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "SignalDeck.Application/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "SignalDeck.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
