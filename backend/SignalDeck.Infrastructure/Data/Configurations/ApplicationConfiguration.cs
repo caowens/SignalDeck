@@ -12,11 +12,10 @@ namespace SignalDeck.Infrastructure.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<ApplicationEntity> builder)
         {
-            builder.HasKey(a => a.Id);
+            builder.HasKey(a => a.InternalId);
 
-            builder.Property(a => a.Id)
-                .ValueGeneratedOnAdd()
-                .HasColumnType("uuid"); // Explicitly set for Postgres
+            builder.Property(a => a.InternalId)
+                .ValueGeneratedOnAdd();
 
             builder.Property(a => a.Name)
                 .IsRequired()
