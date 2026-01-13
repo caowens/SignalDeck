@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SignalDeck.Application.DTOs.Application
+namespace SignalDeck.Api.DTOs.Application
 {
     public class CreateApplicationRequest
     {

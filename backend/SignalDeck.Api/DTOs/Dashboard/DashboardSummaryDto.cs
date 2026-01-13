@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using SignalDeck.Application.DTOs.ErrorLog;
 using SignalDeck.Application.DTOs.Event;
 
-namespace SignalDeck.Application.DTOs.Analytics
+namespace SignalDeck.Api.DTOs.Dashboard
 {
     public class DashboardSummaryDto
     {
