@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SignalDeck.Application")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4ab4f046201fd7d6ead4ebba439e5dd55651f4b5")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+608228cb6f53d6bbc0cc9f1509bd71f5c3ffae04")]
 [assembly: System.Reflection.AssemblyProductAttribute("SignalDeck.Application")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SignalDeck.Application")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

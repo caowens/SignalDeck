@@ -7,8 +7,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "backend", "backend", "{1AE8
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignalDeck.Application", "backend\SignalDeck.Application\SignalDeck.Application.csproj", "{B20DA1A2-EAC7-4A79-BE09-381A446573FB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignalDeck.Domain", "backend\SignalDeck.Domain\SignalDeck.Domain.csproj", "{2B053B85-EA03-4D83-8301-1D2719C6E53A}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignalDeck.Infrastructure", "backend\SignalDeck.Infrastructure\SignalDeck.Infrastructure.csproj", "{7E2A36CA-D6DF-4600-A9AB-7A16A300B6F6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignalDeck.Api", "SignalDeck.Api\SignalDeck.Api.csproj", "{FB20F65A-F5B7-4201-9418-0C032F1BF080}"
@@ -37,18 +35,6 @@ Global
 		{B20DA1A2-EAC7-4A79-BE09-381A446573FB}.Release|x64.Build.0 = Release|Any CPU
 		{B20DA1A2-EAC7-4A79-BE09-381A446573FB}.Release|x86.ActiveCfg = Release|Any CPU
 		{B20DA1A2-EAC7-4A79-BE09-381A446573FB}.Release|x86.Build.0 = Release|Any CPU
-		{2B053B85-EA03-4D83-8301-1D2719C6E53A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2B053B85-EA03-4D83-8301-1D2719C6E53A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2B053B85-EA03-4D83-8301-1D2719C6E53A}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{2B053B85-EA03-4D83-8301-1D2719C6E53A}.Debug|x64.Build.0 = Debug|Any CPU
-		{2B053B85-EA03-4D83-8301-1D2719C6E53A}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{2B053B85-EA03-4D83-8301-1D2719C6E53A}.Debug|x86.Build.0 = Debug|Any CPU
-		{2B053B85-EA03-4D83-8301-1D2719C6E53A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2B053B85-EA03-4D83-8301-1D2719C6E53A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2B053B85-EA03-4D83-8301-1D2719C6E53A}.Release|x64.ActiveCfg = Release|Any CPU
-		{2B053B85-EA03-4D83-8301-1D2719C6E53A}.Release|x64.Build.0 = Release|Any CPU
-		{2B053B85-EA03-4D83-8301-1D2719C6E53A}.Release|x86.ActiveCfg = Release|Any CPU
-		{2B053B85-EA03-4D83-8301-1D2719C6E53A}.Release|x86.Build.0 = Release|Any CPU
 		{7E2A36CA-D6DF-4600-A9AB-7A16A300B6F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7E2A36CA-D6DF-4600-A9AB-7A16A300B6F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7E2A36CA-D6DF-4600-A9AB-7A16A300B6F6}.Debug|x64.ActiveCfg = Debug|Any CPU
@@ -91,7 +77,6 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{B20DA1A2-EAC7-4A79-BE09-381A446573FB} = {1AE8ACA6-933B-BF2A-3671-3E2EAC007D16}
-		{2B053B85-EA03-4D83-8301-1D2719C6E53A} = {1AE8ACA6-933B-BF2A-3671-3E2EAC007D16}
 		{7E2A36CA-D6DF-4600-A9AB-7A16A300B6F6} = {1AE8ACA6-933B-BF2A-3671-3E2EAC007D16}
 	EndGlobalSection
 EndGlobal
