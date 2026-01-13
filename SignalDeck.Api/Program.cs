@@ -2,17 +2,8 @@ using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
-using SignalDeck.Application.Persistence;
-using SignalDeck.Application.Services;
-using SignalDeck.Application.Services.Analytics;
-using SignalDeck.Application.Services.Applications;
-using SignalDeck.Application.Services.ErrorLogs;
-using SignalDeck.Application.Services.EventLogs;
-using SignalDeck.Application.Services.Events;
-using SignalDeck.Application.Services.Metrics;
-using SignalDeck.Domain.Entities;
-using SignalDeck.Infrastructure.Data;
-using SignalDeck.Infrastructure.Repositories;
+using SignalDeck.Api.Data;
+using SignalDeck.Sdk.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,11 +13,11 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
     // Select severity by name in Swagger documentation
-    options.MapType<EventLogSeverity>(() =>
+    options.MapType<SignalSeverity>(() =>
         new OpenApiSchema
         {
             Type = "string",
-            Enum = Enum.GetNames(typeof(EventLogSeverity))
+            Enum = Enum.GetNames(typeof(SignalSeverity))
                     .Select(n => new OpenApiString(n))
                     .Cast<IOpenApiAny>()
                     .ToList()
@@ -37,19 +28,6 @@ builder.Services.AddDbContext<SignalDeckDbContext>(options =>
 {
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
-
-builder.Services.AddScoped<IApplicationRepository, ApplicationRepository>();
-builder.Services.AddScoped<IEventRepository, EventRepository>();
-builder.Services.AddScoped<IErrorLogRepository, ErrorLogRepository>();
-builder.Services.AddScoped<IMetricRepository, MetricRepository>();
-builder.Services.AddScoped<IEventLogRepository, EventLogRepository>();
-
-builder.Services.AddScoped<IApplicationService, ApplicationService>();
-builder.Services.AddScoped<IEventService, EventService>();
-builder.Services.AddScoped<IErrorLogService, ErrorLogService>();
-builder.Services.AddScoped<IMetricService, MetricService>();
-builder.Services.AddScoped<IEventLogService, EventLogService>();
-builder.Services.AddScoped<IAnalyticsService, AnalyticsService>();
 
 builder.Services.AddControllers()
     .AddJsonOptions(o =>
