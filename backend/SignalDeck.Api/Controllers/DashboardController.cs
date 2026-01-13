@@ -9,10 +9,10 @@ namespace SignalDeck.Api.Controllers
 {
     [ApiController]
     [Route("api/v1/[controller]")]
-    public class AnalyticsController : ControllerBase
+    public class DashboardController : ControllerBase
     {
         private readonly IAnalyticsService _analyticsService;
-        public AnalyticsController(IAnalyticsService analyticsService)
+        public DashboardController(IAnalyticsService analyticsService)
         {
             _analyticsService = analyticsService;
         }
