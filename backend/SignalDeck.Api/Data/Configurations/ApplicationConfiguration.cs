@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using ApplicationEntity = SignalDeck.Domain.Entities.Application;
 
-namespace SignalDeck.Infrastructure.Data.Configurations
+namespace SignalDeck.Api.Data.Configurations
 {
     public class ApplicationConfiguration : IEntityTypeConfiguration<ApplicationEntity>
     {

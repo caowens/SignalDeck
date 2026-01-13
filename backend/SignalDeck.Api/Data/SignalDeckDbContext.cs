@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using SignalDeck.Domain.Entities;
 using ApplicationEntity = SignalDeck.Domain.Entities.Application;
 
-namespace SignalDeck.Infrastructure.Data
+namespace SignalDeck.Api.Data
 {
     public class SignalDeckDbContext : DbContext
     {
