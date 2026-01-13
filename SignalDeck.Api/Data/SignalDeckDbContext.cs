@@ -4,8 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 
 using Microsoft.EntityFrameworkCore;
-using SignalDeck.Domain.Entities;
-using ApplicationEntity = SignalDeck.Domain.Entities.Application;
+using SignalDeck.Api.Data.Entities;
+using ApplicationEntity = SignalDeck.Api.Data.Entities.Application;
 
 namespace SignalDeck.Api.Data
 {

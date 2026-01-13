@@ -22,8 +22,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SignalDeck.Application\SignalDeck.Application.csproj" />
-    <ProjectReference Include="..\SignalDeck.Infrastructure\SignalDeck.Infrastructure.csproj" />
     <ProjectReference Include="..\SignalDeck.Sdk\SignalDeck.Sdk.csproj" />
   </ItemGroup>
 

@@ -12,7 +12,7 @@ namespace SignalDeck.Api.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<ApplicationEntity> builder)
         {
-            builder.HasKey(a => a.InternalId);
+            builder.HasKey(a => a.Id);
 
             builder.HasIndex(a => a.ApiKey).IsUnique();
 

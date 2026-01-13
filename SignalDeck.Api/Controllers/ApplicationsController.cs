@@ -1,12 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using SignalDeck.Application.DTOs.Application;
-using SignalDeck.Application.Services;
-using SignalDeck.Application.Mapping;
-using SignalDeck.Application.Services.Applications;
+using SignalDeck.Api.Data;
+using ApplicationEntity = SignalDeck.Api.Data.Entities.Application;
 
 namespace SignalDeck.Api.Controllers
 {
@@ -14,25 +8,25 @@ namespace SignalDeck.Api.Controllers
     [Route("api/v1/[controller]")]
     public class ApplicationsController : ControllerBase
     {
-        private readonly IApplicationService _appService;
-        public ApplicationsController(IApplicationService appService)
+        private readonly SignalDeckDbContext _context;
+        public ApplicationsController(SignalDeckDbContext context)
         {
-            _appService = appService;
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> GetAll()
-        {
-            var apps =  await _appService.GetAllAsync();
-            return Ok(apps);
+            _context = context;
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] CreateApplicationRequest request)
+        public async Task<IActionResult> Create([FromBody] string name)
         {
-            var createdApp = request.ToAppFromCreateRequest();
-            await _appService.CreateAsync(createdApp);
-            return CreatedAtAction(nameof(GetAll), new { id = createdApp.Id }, createdApp.ToDto());
+            var newApp = new ApplicationEntity
+            {
+                Name = name,
+                ApiKey = Guid.NewGuid().ToString("N")
+            };
+
+            _context.Applications.Add(newApp);
+            await _context.SaveChangesAsync();
+
+            return Ok(newApp);
         }
     }
 }
