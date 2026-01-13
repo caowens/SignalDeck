@@ -1,9 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using SignalDeck.Application.DTOs.Application;
-using ApplicationEntity = SignalDeck.Domain.Entities.Application;
+using SignalDeck.Api.DTOs.Application;
+using ApplicationEntity = SignalDeck.Api.Data.Entities.Application;
 
 namespace SignalDeck.Application.Mapping
 {
@@ -13,7 +9,7 @@ namespace SignalDeck.Application.Mapping
         {
             return new ApplicationDto
             {
-                Id = appModel.InternalId,
+                Id = appModel.Id,
                 Name = appModel.Name
             };
         }
