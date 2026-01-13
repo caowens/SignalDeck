@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
-using SignalDeck.Domain.Common;
+using SignalDeck.Sdk.Models;
 
-namespace SignalDeck.Domain.Entities
+namespace SignalDeck.Api.Data.Entities
 {
     public class SignalEntity
     {

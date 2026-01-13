@@ -2,9 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using SignalDeck.Domain.Common;
 
-namespace SignalDeck.Domain.Entities
+namespace SignalDeck.Api.Data.Entities
 {
     public class Application
     {
