@@ -12,10 +12,7 @@ namespace SignalDeck.Infrastructure.Data
     public class SignalDeckDbContext : DbContext
     {
         public DbSet<ApplicationEntity> Applications { get; set; }
-        public DbSet<Event> Events { get; set; }
-        public DbSet<ErrorLog> ErrorLogs { get; set; }
-        public DbSet<Metric> Metrics { get; set; }
-        public DbSet<EventLog> EventLogs { get; set; }
+        public DbSet<SignalEntity> Signals { get; set; }
         public SignalDeckDbContext(DbContextOptions dbContextOptions) : base(dbContextOptions)
         {
             
