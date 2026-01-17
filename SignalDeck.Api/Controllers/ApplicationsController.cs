@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using SignalDeck.Api.Data;
 using SignalDeck.Api.Data.Entities;
 using SignalDeck.Api.Mapping;
@@ -13,6 +14,14 @@ namespace SignalDeck.Api.Controllers
         public ApplicationsController(SignalDeckDbContext context)
         {
             _context = context;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+            return Ok(await _context.Applications
+                .Select(app => app.ToDto())
+                .ToListAsync());
         }
 
         [HttpPost]
