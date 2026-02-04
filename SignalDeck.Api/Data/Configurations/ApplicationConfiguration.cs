@@ -4,13 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using ApplicationEntity = SignalDeck.Api.Data.Entities.Application;
+using SignalDeck.Api.Data.Entities;
 
 namespace SignalDeck.Api.Data.Configurations
 {
-    public class ApplicationConfiguration : IEntityTypeConfiguration<ApplicationEntity>
+    public class ApplicationConfiguration : IEntityTypeConfiguration<Application>
     {
-        public void Configure(EntityTypeBuilder<ApplicationEntity> builder)
+        public void Configure(EntityTypeBuilder<Application> builder)
         {
             builder.HasKey(a => a.Id);
 
