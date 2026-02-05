@@ -22,7 +22,7 @@ namespace SignalDeck.Api.Mapping
             };
         }
 
-        public static AppSidebarDto ToDto(this Application app)
+        public static AppSidebarDto ToSidebarDto(this Application app)
         {
             return new AppSidebarDto(
                 app.Id,

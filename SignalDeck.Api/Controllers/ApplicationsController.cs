@@ -20,7 +20,7 @@ namespace SignalDeck.Api.Controllers
         public async Task<IActionResult> GetAll()
         {
             return Ok(await _context.Applications
-                .Select(app => app.ToDto())
+                .Select(app => app.ToSidebarDto())
                 .ToListAsync());
         }
 
@@ -36,7 +36,7 @@ namespace SignalDeck.Api.Controllers
             _context.Applications.Add(newApp);
             await _context.SaveChangesAsync();
 
-            return Ok(newApp.ToDto());
+            return Ok(newApp.ToSidebarDto());
         }
     }
 }
