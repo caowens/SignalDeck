@@ -10,9 +10,7 @@ using SignalDeck.Api.Mapping;
 
 namespace SignalDeck.Api.Controllers
 {
-    [ApiController]
-    [Route("api/v1/[controller]")]
-    public class DashboardController : ControllerBase
+    public class DashboardController : BaseApiController
     {
         private readonly SignalDeckDbContext _context;
         public DashboardController(SignalDeckDbContext context)

@@ -6,9 +6,7 @@ using SignalDeck.Api.Mapping;
 
 namespace SignalDeck.Api.Controllers
 {
-    [ApiController]
-    [Route("api/v1/[controller]")]
-    public class ApplicationsController : ControllerBase
+    public class ApplicationsController : BaseApiController
     {
         private readonly SignalDeckDbContext _context;
         public ApplicationsController(SignalDeckDbContext context)
