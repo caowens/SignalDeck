@@ -7,9 +7,7 @@ using SignalDeck.Sdk.Models;
 
 namespace SignalDeck.Api.Controllers
 {
-    [ApiController]
-    [Route("api/v1/[controller]")]
-    public class IngestionController : ControllerBase
+    public class IngestionController : BaseApiController
     {
         private readonly SignalDeckDbContext _context;
         public IngestionController(SignalDeckDbContext context)
