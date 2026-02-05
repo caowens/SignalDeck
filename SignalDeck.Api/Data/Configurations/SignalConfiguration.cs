@@ -26,7 +26,9 @@ namespace SignalDeck.Api.Data.Configurations
                 .HasForeignKey(s => s.ApplicationId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            builder.OwnsOne(s => s.Properties, builder => builder.ToJson());
+            builder.Property(s => s.Properties)
+                .HasColumnType("jsonb")
+                .IsRequired();
 
             builder.Property(s => s.EventTimestamp)
                 .IsRequired();

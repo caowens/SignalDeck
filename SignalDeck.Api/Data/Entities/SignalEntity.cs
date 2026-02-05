@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 using SignalDeck.Sdk.Models;
@@ -22,6 +23,7 @@ namespace SignalDeck.Api.Data.Entities
         public string Name { get; set; } = string.Empty;
         public SignalSeverity Severity { get; set; }
         public string Category { get; set; } = string.Empty;
+        [NotMapped]
         public bool IsError => Severity >= SignalSeverity.Error;
         public string? Message { get; set; }
         public string? StackTrace { get; set; }

@@ -30,5 +30,29 @@ namespace SignalDeck.Api.Mapping
                 app.ApiKey
             );
         }
+
+        public static AppStatsDto ToStatsDto(this IEnumerable<SignalEntity> signals)
+        {
+            var signalList = signals.ToList();
+            if (!signalList.Any())
+            {
+                return new AppStatsDto(0, 0, 0.0, string.Empty);
+            }
+
+            var total = signalList.Count;
+            var errors = signalList.Count(s => s.IsError);
+            var topSignal = signalList
+                .GroupBy(s => s.Name)
+                .OrderByDescending(g => g.Count())
+                .Select(g => g.Key)
+                .FirstOrDefault() ?? "None";
+
+            return new AppStatsDto(
+                total,
+                errors,
+                total > 0 ? (double)errors / total : 0.0,
+                topSignal
+            );
+        }
     }
 }
