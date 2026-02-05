@@ -2,6 +2,7 @@ using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
+using Npgsql;
 using SignalDeck.Api.Data;
 using SignalDeck.Sdk.Models;
 
@@ -26,7 +27,15 @@ builder.Services.AddSwaggerGen(options =>
 
 builder.Services.AddDbContext<SignalDeckDbContext>(options =>
 {
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
+    var dataSourceBuilder = new NpgsqlDataSourceBuilder(
+        builder.Configuration.GetConnectionString("DefaultConnection")
+    );
+
+    dataSourceBuilder.EnableDynamicJson();
+
+    var dataSource = dataSourceBuilder.Build();
+    
+    options.UseNpgsql(dataSource);
 });
 
 builder.Services.AddControllers()

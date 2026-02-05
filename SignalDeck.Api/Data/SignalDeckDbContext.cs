@@ -5,13 +5,12 @@ using System.Threading.Tasks;
 
 using Microsoft.EntityFrameworkCore;
 using SignalDeck.Api.Data.Entities;
-using ApplicationEntity = SignalDeck.Api.Data.Entities.Application;
 
 namespace SignalDeck.Api.Data
 {
     public class SignalDeckDbContext : DbContext
     {
-        public DbSet<ApplicationEntity> Applications { get; set; }
+        public DbSet<Application> Applications { get; set; }
         public DbSet<SignalEntity> Signals { get; set; }
         public SignalDeckDbContext(DbContextOptions dbContextOptions) : base(dbContextOptions)
         {
