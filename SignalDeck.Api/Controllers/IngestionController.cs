@@ -16,7 +16,7 @@ namespace SignalDeck.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Log(SignalEvent signal)
+        public async Task<IActionResult> Log([FromBody] SignalEvent signal)
         {
             if (!Request.Headers.TryGetValue("X-Signal-Key", out var apiKey))
                 return Unauthorized("Missing API Key");
