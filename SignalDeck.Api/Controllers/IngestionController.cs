@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SignalDeck.Api.Data;
+using SignalDeck.Api.Data.Entities;
 using SignalDeck.Api.Mapping;
 using SignalDeck.Sdk.Models;
 
@@ -18,11 +19,7 @@ namespace SignalDeck.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> Log([FromBody] SignalEvent signal)
         {
-            if (!Request.Headers.TryGetValue("X-Signal-Key", out var apiKey))
-                return Unauthorized("Missing API Key");
-
-            var app = await _context.Applications
-                .FirstOrDefaultAsync(a => a.ApiKey == apiKey.ToString());
+            var app = await GetAppByApiKey();
 
             if (app == null) return Unauthorized("Invalid API Key");
 
@@ -32,6 +29,15 @@ namespace SignalDeck.Api.Controllers
             await _context.SaveChangesAsync();
 
             return Accepted();
+        }
+
+        private async Task<Application?> GetAppByApiKey()
+        {
+            if (!Request.Headers.TryGetValue("X-Signal-Key", out var apiKey))
+                return null;
+            
+            return await _context.Applications
+                .FirstOrDefaultAsync(a => a.ApiKey == apiKey.ToString());
         }
     }
 }
