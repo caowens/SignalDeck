@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SignalDeck.Api.Data;
 using SignalDeck.Api.Data.Entities;
+using SignalDeck.Api.DTOs;
 using SignalDeck.Api.Mapping;
 
 namespace SignalDeck.Api.Controllers
@@ -23,18 +24,23 @@ namespace SignalDeck.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] string name)
+        public async Task<ActionResult<AppSidebarDto>> Create([FromBody] string name)
         {
+            string randomPart = Guid.NewGuid().ToString("N");
+            string formattedKey = $"sd_live_{randomPart}";
+            
             var newApp = new Application
             {
                 Name = name,
-                ApiKey = Guid.NewGuid().ToString("N")
+                ApiKey = formattedKey
             };
 
             _context.Applications.Add(newApp);
             await _context.SaveChangesAsync();
 
-            return Ok(newApp.ToSidebarDto());
+            var appDto = newApp.ToSidebarDto();
+
+            return Ok(appDto);
         }
     }
 }
