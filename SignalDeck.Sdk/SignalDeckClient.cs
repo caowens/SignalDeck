@@ -41,40 +41,46 @@ namespace SignalDeck.Sdk
         public async Task ProcessQueueAsync()
         {
             var batch = new List<SignalEvent>();
-            var batchSize = 10;
-            var maxWaitTime = TimeSpan.FromSeconds(5);
-
-            while (!_cts.Token.IsCancellationRequested)
+            
+            await foreach(var @event in _channel.Reader.ReadAllAsync(_cts.Token))
             {
-                try
-                {
-                    if (await _channel.Reader.WaitToReadAsync(_cts.Token))
-                    {
-                        while (batch.Count < batchSize && _channel.Reader.TryRead(out var @event) && (DateTime.UtcNow - batch.FirstOrDefault()?.Timestamp) < maxWaitTime)
-                        {
-                            batch.Add(@event);
-                        }
+                batch.Add(@event);
 
-                        if (batch.Any())
-                        {
-                            await _httpClient.PostAsJsonAsync("api/v1/ingestion/batch", batch, _cts.Token);
-                            batch.Clear();
-                        }
-                    }
-                }
-                catch (OperationCanceledException) { break; }
-                catch (Exception ex)
+                if (batch.Count >= 10)
                 {
-                    // Log the exception or handle it as needed
-                    Console.Error.WriteLine($"Exception while processing queue: {ex.Message}");
+                    await SendBatchAsync(batch);
+                    batch.Clear();
                 }
+            }
+
+            // Send any remaining signals in the batch before exiting
+            if (batch.Any())
+            {
+                await SendBatchAsync(batch);
+            }
+        }
+
+        private async Task SendBatchAsync(List<SignalEvent> batch)
+        {
+            try
+            {
+                await _httpClient.PostAsJsonAsync("api/v1/ingestion/batch", batch, _cts.Token);
+            }
+            catch (Exception ex)
+            {
+                // Log the exception or handle it as needed
+                Console.Error.WriteLine($"Exception while sending batch: {ex.Message}");
             }
         }
 
         public void Dispose()
         {
-            _cts.Cancel();
             _channel.Writer.Complete();
+
+            _workerTask.Wait(TimeSpan.FromSeconds(5));
+
+            _cts.Cancel();
+            _httpClient.Dispose();
         }
     }
 }
