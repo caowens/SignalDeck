@@ -40,23 +40,33 @@ namespace SignalDeck.Sdk
 
         public async Task ProcessQueueAsync()
         {
-            await foreach(var @event in _channel.Reader.ReadAllAsync(_cts.Token))
+            var batch = new List<SignalEvent>();
+            var batchSize = 10;
+            var maxWaitTime = TimeSpan.FromSeconds(5);
+
+            while (!_cts.Token.IsCancellationRequested)
             {
                 try
                 {
-                    var response = await _httpClient.PostAsJsonAsync("api/v1/ingestion", @event, _cts.Token);
-                    if (!response.IsSuccessStatusCode)
+                    if (await _channel.Reader.WaitToReadAsync(_cts.Token))
                     {
-                        // Log the error or handle it as needed
-                        Console.Error.WriteLine($"Failed to send signal: {response.StatusCode}");
+                        while (batch.Count < batchSize && _channel.Reader.TryRead(out var @event) && (DateTime.UtcNow - batch.FirstOrDefault()?.Timestamp) < maxWaitTime)
+                        {
+                            batch.Add(@event);
+                        }
+
+                        if (batch.Any())
+                        {
+                            await _httpClient.PostAsJsonAsync("api/v1/ingestion/batch", batch, _cts.Token);
+                            batch.Clear();
+                        }
                     }
                 }
+                catch (OperationCanceledException) { break; }
                 catch (Exception ex)
                 {
                     // Log the exception or handle it as needed
-                    Console.Error.WriteLine($"Exception while sending signal: {ex.Message}");
-
-                    // TODO: Implement retry logic
+                    Console.Error.WriteLine($"Exception while processing queue: {ex.Message}");
                 }
             }
         }

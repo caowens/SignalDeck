@@ -31,6 +31,21 @@ namespace SignalDeck.Api.Controllers
             return Accepted();
         }
 
+        [HttpPost("batch")]
+        public async Task<IActionResult> LogBatch([FromBody] List<SignalEvent> signals)
+        {
+            var app = await GetAppByApiKey();
+
+            if (app == null) return Unauthorized("Invalid API Key");
+
+            var entities = signals.Select(s => s.ToEntity(app.Id)).ToList();
+
+            _context.Signals.AddRange(entities);
+            await _context.SaveChangesAsync();
+            
+            return Accepted();
+        }
+
         private async Task<Application?> GetAppByApiKey()
         {
             if (!Request.Headers.TryGetValue("X-Signal-Key", out var apiKey))
