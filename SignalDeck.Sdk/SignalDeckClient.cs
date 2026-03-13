@@ -4,6 +4,8 @@ using System.Linq;
 using System.Net.Http.Json;
 using System.Threading.Channels;
 using System.Threading.Tasks;
+using Polly;
+using Polly.Retry;
 using SignalDeck.Sdk.Models;
 
 namespace SignalDeck.Sdk
@@ -14,6 +16,7 @@ namespace SignalDeck.Sdk
         private readonly Channel<SignalEvent> _channel;
         private readonly CancellationTokenSource _cts = new();
         private readonly Task _workerTask;
+        private readonly AsyncRetryPolicy<HttpResponseMessage> _retryPolicy;
 
         public SignalDeckClient(string apiKey, string baseUrl = "https://api.signaldeck.com")
         {
@@ -31,6 +34,14 @@ namespace SignalDeck.Sdk
             });
 
             _workerTask = Task.Run(ProcessQueueAsync);
+
+            // Retry 3 times if the status code is 5xx or a network failure
+            _retryPolicy = Policy
+                .Handle<HttpRequestException>()
+                .OrResult<HttpResponseMessage>(r => (int)r.StatusCode >= 500)
+                .WaitAndRetryAsync(3, retryAttempt =>
+                    TimeSpan.FromSeconds(Math.Pow(2, retryAttempt))
+                );
         }
 
         public void EnqueueSignal(SignalEvent @event)
@@ -62,15 +73,15 @@ namespace SignalDeck.Sdk
 
         private async Task SendBatchAsync(List<SignalEvent> batch)
         {
-            try
-            {
-                await _httpClient.PostAsJsonAsync("api/v1/ingestion/batch", batch, _cts.Token);
-            }
-            catch (Exception ex)
-            {
-                // Log the exception or handle it as needed
-                Console.Error.WriteLine($"Exception while sending batch: {ex.Message}");
-            }
+            await _retryPolicy.ExecuteAsync(async () =>
+             {
+                var response = await _httpClient.PostAsJsonAsync("api/v1/ingestion/batch", batch, _cts.Token);
+                if (!response.IsSuccessStatusCode)
+                {
+                    Console.Error.WriteLine($"Failed to send batch: {response.StatusCode}");
+                }
+                return response;
+             });
         }
 
         public void Dispose()
